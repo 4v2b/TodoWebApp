@@ -8,8 +8,8 @@ namespace Todo.API.Services
 
         Task<User?> GetUserByNameAsync(string username);
 
-        Task DeleteAsync(User user, string password);
+        Task DeleteAsync(User user);
 
-        bool IsAuthenticated(string password, string passwordHash);
+        bool ValidatePassword(string password, string passwordHash);
     }
 }

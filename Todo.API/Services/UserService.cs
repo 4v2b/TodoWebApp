@@ -15,16 +15,11 @@ namespace Todo.API.Services
             _dbContext = dbContext;
         }
 
-        public async Task DeleteAsync(User user, string password)
+        public async Task DeleteAsync(User user)
         {
-            if (IsAuthenticated(password, user.PasswordHash))
-            {
-                _dbContext.Remove(user);
+            _dbContext.Remove(user);
 
-                await _dbContext.SaveChangesAsync();
-            }
-            else throw new ArgumentException("Wrong password");
-
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<User?> GetUserByNameAsync(string username)
@@ -32,7 +27,7 @@ namespace Todo.API.Services
             return await _dbContext.Set<User>().SingleAsync(e => e.Name.Equals(username));
         }
 
-        public bool IsAuthenticated(string password, string passwordHash)
+        public bool ValidatePassword(string password, string passwordHash)
         {
             ArgumentNullException.ThrowIfNull(password);
             ArgumentNullException.ThrowIfNull(passwordHash);
