@@ -2,15 +2,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
+using Todo.API.Data;
 using Todo.API.Data.Models;
 
 namespace Todo.API.Services
 {
     public class UserService : IUserService
     {
-        private readonly DbContext _dbContext;
+        private readonly TodoContext _dbContext;
 
-        public UserService(DbContext dbContext)
+        public UserService(TodoContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -24,7 +25,7 @@ namespace Todo.API.Services
 
         public async Task<User?> GetUserByNameAsync(string username)
         {
-            return await _dbContext.Set<User>().SingleAsync(e => e.Name.Equals(username));
+            return await _dbContext.Users.SingleOrDefaultAsync(e => e.Name.Equals(username));
         }
 
         public bool ValidatePassword(string password, string passwordHash)

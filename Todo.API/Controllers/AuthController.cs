@@ -8,25 +8,21 @@ namespace Todo.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost]
+        [HttpPost("/[action]")]
         public async Task<IActionResult> SignUp([FromBody] UserDto newUser, [FromServices] IUserService userService)
         {
             try
             {
                 await userService.RegisterAsync(newUser);
             }
-            catch (AggregateException ex) 
+            catch(AggregateException ex) 
             {
-                if(ex.InnerException is not ArgumentException)
-                {
-                    throw ex.InnerException;
-                }
-                return BadRequest();
+                return BadRequest(ex.InnerException?.Message);
             }
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("/[action]")]
         public async Task<IActionResult> Login([FromBody] UserDto user, [FromServices] IUserService userService, [FromServices] IJwtService jwtService)
         {
             var storedUser = await userService.GetUserByNameAsync(user.Name);

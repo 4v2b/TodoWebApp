@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Todo.API.Data;
 using Todo.API.Data.Models;
 
 namespace Todo.API.Services
 {
     public class TodoListService : ITodoListService
     {
-        private readonly DbContext _dbContext;
+        private readonly TodoContext _dbContext;
 
-        public TodoListService(DbContext dbContext)
+        public TodoListService(TodoContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -28,7 +29,7 @@ namespace Todo.API.Services
 
         public async Task<IEnumerable<TodoList>> GetAllListsByUserIdAsync(int userId)
         {
-            return await _dbContext.Set<TodoList>()
+            return await _dbContext.TodoLists
                 .Include(e => e.User)
                 .Where(e => e.User.Id == userId)
                 .ToListAsync();
@@ -39,9 +40,11 @@ namespace Todo.API.Services
             return await _dbContext.FindAsync<TodoList>(id); 
         }
 
-        public Task UpdateListAsync(TodoList list)
+        public async Task UpdateListAsync(TodoList list)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(list);
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

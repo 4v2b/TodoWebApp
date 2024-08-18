@@ -29,7 +29,7 @@ namespace Todo.API.Services
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             }),
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(_options.ExpireMinutes),
                 Issuer = _options.Issuer,
                 Audience = _options.Audience,
                 SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature)
