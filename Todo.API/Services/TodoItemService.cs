@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Todo.API.Data;
 using Todo.API.Data.Models;
+using Todo.API.Services.Interfaces;
 
 namespace Todo.API.Services
 {
@@ -13,11 +14,13 @@ namespace Todo.API.Services
             _dbContext = dbContext;
         }
 
-        public async Task AddItemAsync(TodoItem item)
+        public async Task<int> AddItemAsync(TodoItem item)
         {
             _dbContext.Add(item);
 
             await _dbContext.SaveChangesAsync();
+
+            return item.Id;
         }
 
         public async Task DeleteItemAsync(TodoItem item)

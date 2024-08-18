@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using Todo.API.Data;
 using Todo.API.Data.Models;
+using Todo.API.Services.DTO;
+using Todo.API.Services.Interfaces;
 
 namespace Todo.API.Services
 {

@@ -1,10 +1,10 @@
 ﻿using Todo.API.Data.Models;
 
-namespace Todo.API.Services
+namespace Todo.API.Services.Interfaces
 {
     public interface ITodoListService
     {
-        Task AddListAsync(TodoList list);
+        Task<int> AddListAsync(TodoList list);
 
         Task UpdateListAsync(TodoList list);
 

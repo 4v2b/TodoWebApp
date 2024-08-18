@@ -1,4 +1,4 @@
-﻿namespace Todo.API.Services
+﻿namespace Todo.API.Services.DTO
 {
     public class UserDto
     {

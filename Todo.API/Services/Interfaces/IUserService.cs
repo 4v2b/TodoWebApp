@@ -1,6 +1,7 @@
 ﻿using Todo.API.Data.Models;
+using Todo.API.Services.DTO;
 
-namespace Todo.API.Services
+namespace Todo.API.Services.Interfaces
 {
     public interface IUserService
     {
