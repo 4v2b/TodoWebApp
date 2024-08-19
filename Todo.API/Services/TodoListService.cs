@@ -34,13 +34,14 @@ namespace Todo.API.Services
         {
             return await _dbContext.TodoLists
                 .Include(e => e.User)
+                .Include(e => e.Items)
                 .Where(e => e.User.Id == userId)
                 .ToListAsync();
         }
 
         public async Task<TodoList?> GetListByIdAsync(int id)
         {
-            return await _dbContext.FindAsync<TodoList>(id); 
+            return await _dbContext.TodoLists.Include(e => e.Items).SingleOrDefaultAsync(e => e.Id == id); 
         }
 
         public async Task UpdateListAsync(TodoList list)

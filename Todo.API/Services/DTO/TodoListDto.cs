@@ -2,8 +2,9 @@
 {
     public class TodoListDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string? Name { get; set; }
-        public ICollection<int> ItemsIds { get; set; } = new List<int>();
+        public int UserId { get; set; }
+        public ICollection<TodoItemDto> Items { get; set; } = new List<TodoItemDto>();
     }
 }
