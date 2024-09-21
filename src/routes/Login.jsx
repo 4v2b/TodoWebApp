@@ -1,18 +1,28 @@
 import { useState } from "react";
+import { authorise, getTodos } from "../api/requests";
+import { redirect } from "react-router-dom";
+import { getToken } from "../utils/storageHelpers";
 
 export default function Login() {
     const [inputs, setInputs] = useState({});
     let errors;
 
-    function handleSubmit(event) {
-        
+    async function handleSubmit(event) {
         event.preventDefault();
-
-        const form = event.currentTarget;
+        authorise(inputs.user, inputs.password).then(success => {
+            if (success) {
+                redirect("/api/todo", {
+                    headers: {
+                        "Authorization": `Bearer ${getToken()}`
+                    }
+                });
+                getTodos().then(data => console.log(data))
+                console.log(getToken());
+            } else console.log("Wrong login or password");
+        })
     }
 
     function handleInput(event) {
-
         console.log(inputs)
         setInputs({ ...inputs, [event.target.id]: event.target.value })
     }

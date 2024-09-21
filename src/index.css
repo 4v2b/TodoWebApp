@@ -30,7 +30,7 @@ button.primary:hover {
   color: #FFF;
   border: none;
   border-radius: 1em;
-  padding: 1em;
+  padding: 0.8em;
 }
 
 .primary-btn:hover {
@@ -39,7 +39,7 @@ button.primary:hover {
   color: var(--primary);
   border: var(--primary) solid 0.15em;
   border-radius: 1em;
-  padding: 0.85em;
+  padding: 0.65em;
 }
 
 .flex-container {
@@ -66,8 +66,8 @@ button.primary:hover {
 }
 
 .form .input-group input {
-  border: 3px var(--dark) solid;
-  padding: 1em;
+  border: 2.5px var(--dark) solid;
+  padding: 0.7em;
   border-radius: 1em;
 }
 
