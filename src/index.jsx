@@ -1,17 +1,27 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/Root";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
+import Board, { loader as todoLoader } from "./routes/Board"
+
 
 const router = createBrowserRouter([
   {
+    //path: "/login",
     path: "/",
-    element: <Login/>,
-    errorElement: <ErrorPage/>
+    element: <Login />,
+    errorElement: <ErrorPage />
   },
+  {
+    path: "/todo",
+    //path: "/",
+    element: <Board />,
+    errorElement: <ErrorPage />,
+    loader: todoLoader
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

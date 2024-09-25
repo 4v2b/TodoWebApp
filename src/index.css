@@ -6,7 +6,8 @@
 }
 
 body {
-  font-size: large;
+  font-size: 1.4em;
+  transition: all 50ms;
   margin: 0;
   background-color: var(--light);
   font-family: "Rubik", 'Times New Roman', sans-serif;
@@ -14,6 +15,12 @@ body {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+textarea:focus,
+textarea {
+  outline: none;
+  border: none;
 }
 
 button.primary {
@@ -27,7 +34,7 @@ button.primary:hover {
 
 .primary-btn {
   background-color: var(--primary);
-  color: #FFF;
+  color: white;
   border: none;
   border-radius: 1em;
   padding: 0.8em;
@@ -78,4 +85,228 @@ button.primary:hover {
   text-decoration: none;
   font-weight: 200;
   text-align: center;
+}
+
+.todo-list {
+  border-radius: 0.5em;
+  background-color: white;
+  padding: 1.5em;
+  box-shadow: 0px 4px 4px 0px rgba(88, 103, 106, 0.25);
+}
+
+.todo-list-title {
+  justify-self: stretch;
+  position: relative;
+  margin-right: 0.2em;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+
+.pencil {
+  margin-right: 0.2em;
+  opacity: 0;
+  justify-self: start;
+  transition: opacity 0.3s ease;
+}
+
+.title-wrapper:hover .pencil {
+  opacity: 1;
+}
+
+.todo-item-checked:hover .pencil,
+.todo-item:hover .pencil {
+  opacity: 1;
+}
+
+.title-wrapper {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  justify-items: start;
+  padding-bottom: 0.7em;
+  border-bottom: 0.1em dashed var(--primary);
+}
+
+.checkbox {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.3em;
+  position: relative;
+  border: .15em solid;
+  color: var(--primary);
+  background: transparent;
+  border-radius: 1em;
+  box-shadow: 0px 4px 4px 0px rgba(88, 103, 106, 0.25);
+}
+
+.todo-item-checked span,
+.todo-item span {
+  margin-right: 0.5em;
+  transition-duration: 0.4s;
+}
+
+.todo-item-checked,
+.todo-item {
+  
+  transition-duration: 50ms;
+  align-items: center;
+  padding-top: 0.5em;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+}
+
+.new-todo-item {
+  transition-duration: 50ms;
+  align-items: center;
+  padding-top: 0.5em;
+  display: grid;
+  grid-template-columns: auto auto 1fr 1fr;
+}
+
+.submitItem,
+.cancelItem,
+.plus,
+.delete,
+.todo-item-checked .pencil,
+.todo-item .pencil  {
+  justify-self: end;
+}
+
+svg,
+svg * {
+  transition: all 0.2s;
+
+}
+
+.plus:hover svg {
+  fill: var(--primary);
+}
+
+.pencil:hover svg * {
+  stroke: var(--primary);
+}
+
+.checkmark {
+  transition: opacity 1s linear, visibility 0s linear;
+  width: 1em;
+  height: 1em;
+}
+
+.todo-item-checked * {
+  color: #BBBBBB;
+  text-decoration: line-through;
+}
+
+.todo-item-checked .delete svg {
+  fill: #BBBBBB;
+}
+
+.delete:hover svg {
+  fill: var(--secondary);
+}
+
+.todo-items-wrapper {
+  transition: all 200ms ease-out;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.delete {
+  margin-left: 0.5em;
+  height: 1em;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.todo-item-checked:hover .delete,
+.todo-item:hover .delete {
+  background-color: white;
+  border-radius: 0.1em;
+  right: 0;
+  opacity: 1;
+}
+
+.textbox{
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+}
+
+.textbox * {
+  align-self: center;
+}
+
+.textbox textarea {
+  transition: all 200ms ease-out;
+  padding: 0.1em;
+  color: var(--dark);
+  max-width: 10em;
+  width: auto;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 1em;
+  margin-right: 0.5em;
+  border-bottom: 0.1em solid var(--dark);
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+}
+
+.textbox:focus {
+  transform: translateY(-3%);
+  box-shadow: 1px 4px 4px 2px rgba(88, 103, 106, 0.25);
+  border-bottom: 0.1em solid var(--dark);
+}
+
+
+.sparks {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 0.15em;
+  height: 0.15em;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.spark-1 {
+  top: 0;
+  left: 50%;
+  animation: spark-animation 0.5s linear forwards;
+}
+
+.spark-2 {
+  top: 50%;
+  left: 0;
+  animation: spark-animation 0.5s linear forwards 0.1s;
+}
+
+.spark-3 {
+  top: 50%;
+  right: 0;
+  animation: spark-animation 0.5s linear forwards 0.2s;
+}
+
+@keyframes spark-animation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 }

@@ -1,24 +1,20 @@
 import { useState } from "react";
-import { authorise, getTodos } from "../api/requests";
-import { redirect } from "react-router-dom";
-import { getToken } from "../utils/storageHelpers";
+import { authorise} from "../api/requests";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [inputs, setInputs] = useState({});
+    const navigate = useNavigate()
     let errors;
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
         authorise(inputs.user, inputs.password).then(success => {
             if (success) {
-                redirect("/api/todo", {
-                    headers: {
-                        "Authorization": `Bearer ${getToken()}`
-                    }
-                });
-                getTodos().then(data => console.log(data))
-                console.log(getToken());
-            } else console.log("Wrong login or password");
+                navigate("/todo");
+            } else {
+                console.log("Wrong login or password");
+            }
         })
     }
 

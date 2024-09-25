@@ -16,17 +16,93 @@ export async function authorise(name, password, isRemembered = false) {
         .catch(error => { removeToken(); return !success });
 }
 
-// use react router to go to main page with todos and use loading prop to load todos when access page 
-export function getTodos() {
-    return fetch("https://localhost:7278/api/Todo", {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'text/plain',
-            'Authorization': `Bearer ${getToken()}`
+export async function getTodos() {
+    try {
+        const response = await fetch("https://localhost:7278/api/Todo", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'text/plain',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        });
+
+        if (response.ok) {
+            return await response.json();
         }
-    })
-        .then(response => { if (response.ok) return response.json(); else throw new Error(response.status) })
-        .then(data => data)
-        .catch(error => { console.error(error); return null });
+        else throw new Error(response.status)
+    } catch (error) {
+        console.error(error); return null
+    }
+}
+
+export async function putTodoItem(todoItem) {
+    // console.log(getToken())
+    // console.log(todoItem)
+    try {
+        const response = await fetch(`https://localhost:7278/api/todo/items/${todoItem.id}`, {
+            method: "PUT",
+            headers: {
+                'Accept' : '*/*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            },
+            body: JSON.stringify( {
+                ...todoItem
+            })
+        });
+
+        if (response.ok) {
+            return await response.json();
+        }
+        else { console.error(response); throw new Error(response.status) }
+    } catch (error) {
+        console.error(error); return null
+    }
+}
+
+export async function postTodoItem(listId, todoItem) {
+    try {
+        const response = await fetch(`https://localhost:7278/api/todo/${listId}`, {
+            method: "POST",
+            headers: {
+                'Accept' : '*/*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            },
+            body: JSON.stringify( {
+                ...todoItem
+            })
+        });
+
+        if (response.ok) {
+            return await response.json();
+        }
+        else { console.error(response); throw new Error(response.status) }
+    } catch (error) {
+        console.error(error); return null
+    }
+}
+
+export async function deleteTodoItem(itemId) {
+    try {
+        const response = await fetch(`https://localhost:7278/api/todo/items/${itemId}`, {
+            method: "DELETE",
+            headers: {
+                'Accept' : '*/*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        });
+
+
+        // todo : return true or false depending on status
+
+        if (response.ok) {
+            return await response.text();
+        }
+        else { console.error(response); throw new Error(response.status) }
+    } catch (error) {
+        console.error(error); return null
+    }
 }
