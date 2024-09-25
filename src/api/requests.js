@@ -48,7 +48,7 @@ export async function putTodoItem(todoItem) {
                 'Authorization': `Bearer ${getToken()}`
             },
             body: JSON.stringify( {
-                ...todoItem
+                ...todoItem, id:0
             })
         });
 

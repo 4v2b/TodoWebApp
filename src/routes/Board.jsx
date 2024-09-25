@@ -9,8 +9,6 @@ export default function Board() {
     const { loadedTodoLists } = useLoaderData()
     const [lists, setLists] = useState([])
 
-    console.log(loadedTodoLists)
-
     useEffect(
         () => setLists([...loadedTodoLists]),
         [loadedTodoLists]
@@ -24,7 +22,6 @@ export default function Board() {
         setLists(lists.map((list, i) => (i === index ? newList : list)))
     }
 
-    console.log(lists)
     return (<div className="todo-container flex-container">
         {lists.map((el, index) => <TodoList index={index} key={el.id} list={el} onListCreation={handleListCreation} onListUpdate={handleListUpdate} />)}
     </div>)

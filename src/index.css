@@ -33,6 +33,7 @@ button.primary:hover {
 }
 
 .primary-btn {
+  transition: background-color 200ms linear;
   background-color: var(--primary);
   color: white;
   border: none;
@@ -240,8 +241,7 @@ svg * {
 .textbox textarea {
   transition: all 200ms ease-out;
   padding: 0.1em;
-  color: var(--dark);
-  max-width: 10em;
+  max-width: 8em;
   width: auto;
   resize: none;
   overflow: hidden;

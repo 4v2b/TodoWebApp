@@ -41,7 +41,7 @@ export default function TextBox({ initValue = '', onSubmit, onAbort }) {
                 height={"1em"}
                 width={"1em"}
                 iconName={"checkmark"}
-                onClick={() => {onSubmit(value); setValue(initValue)}}
+                onClick={() => {onSubmit(value);}}
             ></Icon>
 
         </div>)
