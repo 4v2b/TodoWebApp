@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Todo.API.Data.Models;
@@ -9,6 +10,7 @@ using Todo.API.Services.Interfaces;
 namespace Todo.API.Controllers
 {
     [Authorize]
+    [EnableCors("AllowReactApp")]
     [ApiController]
     [Route("api/[controller]")]
     public class TodoController : ControllerBase
@@ -131,9 +133,9 @@ namespace Todo.API.Controllers
                 return NotFound("Item with given id not found");
             }
 
-            if(itemDto.Content != null && itemDto.Content.Equals(item.Content))
+            if(itemDto.Content != null && !itemDto.Content.Equals(item.Content))
             {
-                item.Content = itemDto.Content ?? item.Content;
+                item.Content = itemDto.Content;
             }
 
             item.IsChecked = itemDto.IsChecked;
