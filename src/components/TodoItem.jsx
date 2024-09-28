@@ -24,8 +24,6 @@ export default function TodoItem({ index, item, onCheck, onItemDelete, onItemUpd
 
     async function handleSubmitChange(value) {
 
-        console.log(value);
-
         const responseItem = await putTodoItem({...item, content : value });
 
         if(responseItem){
@@ -64,7 +62,7 @@ export default function TodoItem({ index, item, onCheck, onItemDelete, onItemUpd
 
             {
                 isEdited ?
-                    (<TextBox initValue={item.content} onSubmit={handleSubmitChange} onAbort={handleAbortChange}></TextBox>)
+                    (<TextBox className="item-edit"  initValue={item.content} onSubmit={handleSubmitChange} onAbort={handleAbortChange}></TextBox>)
                     : (<>        <span>{item.content}</span>
                         <Icon className="pencil" onClick={handleEdition} iconName={"pencil-outline"} width={"1em"} color="#FFFFFF" height={"1em"} />
                         <Icon onClick={() => onItemDelete(item.id)} className="delete" height={"1em"} width={"1em"} color={"#58676A"} iconName={"trash-bin-outline"}></Icon>

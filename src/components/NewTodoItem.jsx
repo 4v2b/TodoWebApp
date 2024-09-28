@@ -22,6 +22,7 @@ export default function NewTodoItem({ onItemSubmit, onItemAbort }) {
             </div>
 
             <TextBox
+            className="new-item"
                 onSubmit={(value) => handleSubmit(value)}
                 onAbort={() => onItemAbort()}
             ></TextBox>

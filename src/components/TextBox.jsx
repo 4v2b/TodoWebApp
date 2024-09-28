@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Icon from "./Icon";
 
-export default function TextBox({ initValue = '', onSubmit, onAbort }) {
+export default function TextBox({maxLength =50, width = null, className = '', initValue = '', onSubmit = () => { }, onAbort = () => { } }) {
     const [value, setValue] = useState(initValue);
     const textareaRef = useRef(null);
 
@@ -17,31 +17,31 @@ export default function TextBox({ initValue = '', onSubmit, onAbort }) {
             textarea.style.height = `${textarea.scrollHeight}px`;
         }
     };
+
     return (
-        <div className={"textbox"}>
+        <div className={"textbox " + className}>
             <textarea
+                style={{ width: width || 'auto' }}
                 ref={textareaRef}
                 value={value}
                 onChange={handleInputChange}
                 rows={1}
-                maxLength="70"
+                maxLength={maxLength}
                 placeholder="To do..."
             />
             <Icon
                 className={"cancelItem"}
-                color="#58676A"
-                height={"1.5em"}
-                width={"1.5em"}
+                height={"1.35em"}
+                width={"1.35em"}
                 iconName={"cross"}
                 onClick={() => onAbort()}
             ></Icon>
             <Icon
                 className={"submitItem"}
-                color="#58676A"
-                height={"1em"}
-                width={"1em"}
+                height={"0.9em"}
+                width={"0.9em"}
                 iconName={"checkmark"}
-                onClick={() => {onSubmit(value);}}
+                onClick={() => { onSubmit(value); setValue('') }}
             ></Icon>
 
         </div>)

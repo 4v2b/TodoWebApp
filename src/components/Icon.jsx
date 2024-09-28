@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Icon({ className, iconName, width, height, stroke = "none", color = "currentColor", onClick = () => { } }) {
+export default function Icon({ className, iconName, width, height, stroke = "none", color = "currentColor", onClick }) {
     const [svgContent, setSvgContent] = useState("");
 
     useEffect(() => {

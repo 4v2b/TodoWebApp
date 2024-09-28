@@ -12,5 +12,5 @@ export function removeToken() {
 }
 
 export function getToken(){
-    return localStorage.getItem('token') ?? sessionStorage.getItem('token')
+    return localStorage.getItem('token') || sessionStorage.getItem('token')
 }
