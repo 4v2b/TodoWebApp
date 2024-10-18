@@ -1,0 +1,703 @@
+:root {
+  --primary: #4392F1;
+  --secondary: #EF8833;
+  --light: #ECE8EF;
+  --dark: #58676A;
+}
+
+body {
+  font-size: 1.2em;
+  transition: all 50ms;
+  margin: 0;
+  background-color: var(--light);
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+textarea {
+  max-width: 10em;
+  outline: none;
+  border: none;
+}
+
+button.primary {
+  color: var(--primary);
+  border-radius: 1rem;
+}
+
+button.primary:hover {
+  color: var(--primary);
+}
+
+.primary-btn {
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+
+  transition: background-color 200ms linear;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 1em;
+  padding: 0.8em;
+}
+
+.primary-btn:hover {
+  font-weight: 500;
+  background-color: white;
+  color: var(--primary);
+  border: var(--primary) solid 0.15em;
+  border-radius: 1em;
+  padding: 0.65em;
+}
+
+.flex-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+}
+
+.arrow {
+  width: 1em;
+  height: 1em;
+}
+
+.arrow svg * {
+  fill: var(--dark);
+}
+
+.sidebar.expanded .expand-btn .arrow {
+  animation: rotate 0.1s ease-out 1 forwards;
+
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+.sidebar:not(.expanded) .content {
+  width: 0em;
+  display: none; /* Hide content when collapsed */
+}
+
+.sidebar.expanded .content {
+  width: 12em; /* Expanded width */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+
+.sidebar .content {
+  box-shadow: 0px 4px 4px 0px rgba(88, 103, 106, 0.25);
+  transition: width 0.3s ease;
+  background-color: white;
+  padding: 1em;
+  /* width: 0.2em; */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.expand-btn {
+  box-shadow: 2px 4px 4px 0px rgba(88, 103, 106, 0.25);
+
+  transition: all 0.3s ease-out;
+  border: 0.1em solid white;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+/* padding: 0.1em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  align-self: center;
+  background-color: white;
+  height: 5em;
+}
+
+.expand-btn:hover {
+  background-color: var(--light);
+  border: 0.1em solid var(--dark);
+}
+
+.todo-list,
+.todo-item-checked {
+  max-width: 15em;
+}
+
+.todo-list-prev {
+  font-size: 1em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+
+
+  border: 0.1em var(--light) solid;
+  border-radius: 0.5em;
+  text-decoration: none;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  margin-top: 0.5em;
+  transition: all 0.3s ease-in;
+}
+
+.todo-list-prev-name {
+  overflow: hidden;
+  text-wrap: wrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.list-delete {
+  position: relative;
+  padding: 0.1em;
+}
+
+.bubble {
+  border-radius: 1em;
+  opacity: 0;
+  height: 1em;
+  width: 1em;
+  position: absolute;
+  background-color: var(--dark);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.list-delete:hover .bubble {
+  opacity: 0.2;
+  transform: scale(1.3);
+}
+
+.todo-list-prev:hover {
+  border-color: var(--dark);
+  background-color: var(--light);
+}
+
+.items-count {
+  justify-self: start;
+  margin-left: 0.2em;
+  margin-right: 0.3em;
+
+  font-size: 0.8em;
+  align-self: center;
+}
+
+.new-list {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 1em;
+  align-items: center;
+
+}
+
+.new-list input {
+  border-radius: 0.5em;
+  padding: 0.2em;
+  width: 9em;
+  opacity: 0.8;
+  outline: none;
+  font-size: 1em;
+  margin-right: 0.5em;
+  /* border-bottom: 0.1em solid var(--dark); */
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+  transition: all 0.2s ease-out;
+  /* color: bla; */
+  border: 0.1em solid var(--dark);
+
+}
+
+.new-list input:focus,
+.new-list input:hover {
+  opacity: 1;
+  background-color: var(--light);
+  border: 0.1em solid var(--dark);
+
+}
+
+.rememberMe {
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+
+.rememberMe input+label {
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+  font-size: 0.9em;
+}
+
+.form {
+  padding: 1.5em 1.5em 1em 1.5em;
+  border-radius: 1em;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+}
+
+.form * {
+  font-size: 1rem;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+.form .input-group input {
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+
+  outline: none;
+  transition: all 0.4s ease-out;
+  border: 2.5px var(--light) solid;
+  padding: 0.7em;
+  border-radius: 1em;
+}
+
+
+.form .input-group input:focus,
+.form .input-group input:hover {
+  border: 2.5px var(--dark) solid;
+  padding: 0.7em;
+  border-radius: 1em;
+}
+
+.errors {
+  font-size: 0.7em;
+  /* transition: heigth 0.3em ease-out; */
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+  color: var(--secondary);
+  text-align: center;
+  margin: 0.3em;
+}
+
+.exit-btn {
+  font-size: 0.8em;
+  transition: all 0.3s ease-out;
+  border-radius: 1em;
+  border: 0.1em solid var(--light);
+  display: flex;
+  padding: 0.2em;
+  flex-direction: row;
+  align-items: center;
+}
+
+.exit-btn:hover {
+  border-color: var(--dark);
+  background-color: var(--light);
+}
+
+.exit-btn span {
+  padding: .2em;
+}
+
+.user-panel {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.exit-icon {}
+
+.alt-link {
+  margin-top: 0.7em;
+  color: black;
+  opacity: 0.5;
+  transition: opacity 0.4s ease-out;
+  font-size: 0.7em;
+  text-decoration: none;
+  font-weight: 200;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+.alt-link:hover {
+  opacity: 1;
+}
+
+.todo-list {
+  border-radius: 0.5em;
+  background-color: white;
+  padding: 1.5em;
+  box-shadow: 0px 4px 4px 0px rgba(88, 103, 106, 0.25);
+}
+
+.todo-list-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-self: stretch;
+  position: relative;
+  margin-right: 0.4em;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+
+.pencil {
+  margin-right: 0.2em;
+  opacity: 0;
+  justify-self: start;
+  transition: opacity 0.3s ease;
+}
+
+.title-wrapper:hover .pencil {
+  opacity: 1;
+}
+
+.todo-item-checked:hover .pencil,
+.todo-item:hover .pencil {
+  opacity: 1;
+}
+
+.title-wrapper {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  padding-bottom: 0.7em;
+  border-bottom: 0.1em dashed var(--primary);
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+}
+
+.title-wrapper .todo-list-prev-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.title-wrapper .textbox {
+  flex: 1;
+}
+
+
+.checkbox {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.3em;
+  position: relative;
+  border: .15em solid;
+  color: var(--primary);
+  background: transparent;
+  border-radius: 1em;
+  box-shadow: 0px 4px 4px 0px rgba(88, 103, 106, 0.25);
+}
+
+.todo-item-checked span,
+.todo-item span {
+  flex: 1;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 0.5em;
+  transition-duration: 0.4s;
+}
+
+.todo-item-checked,
+.todo-item {
+  transition-duration: 50ms;
+  align-items: center;
+  padding-top: 0.5em;
+  /* display: grid;
+  grid-template-columns: auto 1fr auto auto; */
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+}
+
+.submitItem {
+  padding: 0.1em;
+}
+
+.todo-item-checked span,
+.todo-item span {
+  flex: 1;
+}
+
+.new-todo-item {
+  transition-duration: 50ms;
+  align-items: center;
+  padding-top: 0.5em;
+  display: grid;
+  grid-template-columns: auto auto 1fr 1fr;
+}
+
+.submitItem,
+.cancelItem,
+.plus,
+.delete,
+.todo-item-checked .pencil,
+.todo-item .pencil {
+  justify-self: end;
+}
+
+svg,
+svg * {
+  transition: all 0.2s;
+
+}
+
+.plus:hover svg {
+  fill: var(--primary);
+}
+
+.plus {
+  padding: 0.1em;
+  border-radius: 1em;
+  transition: all 0.3s ease-out;
+}
+
+.plus:hover {
+  /* background-color: var(--light); */
+}
+
+.plus svg {
+  fill: var(--dark);
+}
+
+.cancelItem *,
+.submitItem * {
+  fill: var(--dark);
+
+}
+
+.cancelItem:hover * {
+  fill: var(--secondary);
+}
+
+.submitItem:hover * {
+  fill: var(--primary);
+}
+
+
+.pencil:hover svg * {
+  stroke: var(--primary);
+}
+
+.checkmark {
+  transition: opacity 1s linear, visibility 0s linear;
+  width: 1em;
+  height: 1em;
+}
+
+.todo-item-checked * {
+  color: #BBBBBB;
+  text-decoration: line-through;
+}
+
+.todo-item-checked .delete svg {
+  fill: #BBBBBB;
+}
+
+.delete:hover svg {
+  fill: var(--secondary);
+}
+
+.todo-items-wrapper {
+  transition: all 200ms ease-out;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.delete {
+  margin-left: 0.5em;
+  height: 1em;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.todo-item-checked:hover .delete,
+.todo-item:hover .delete {
+  background-color: white;
+  border-radius: 0.1em;
+  right: 0;
+  opacity: 1;
+}
+
+.item-edit textarea {
+
+  border-bottom: 0.1em solid var(--light);
+  color: black;
+}
+
+.item-edit textarea:hover,
+.item-edit textarea:focus {
+  border-bottom: 0.1em solid var(--dark);
+  background-color: var(--light);
+}
+
+.textbox {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+
+}
+
+
+
+.textbox * {
+  align-self: center;
+}
+
+.textbox textarea {
+  flex: 1;
+  transition: all 200ms ease-out;
+  padding: 0.1em;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 1em;
+  margin-right: 0.5em;
+  font-family: "Rubik", 'Times New Roman', sans-serif;
+}
+
+.textbox textarea:hover,
+.textbox textarea:focus {
+  opacity: 1
+}
+
+textarea::-webkit-scrollbar {
+  width: 0.4em;
+}
+
+.new-item textarea {
+  border-bottom: 0.1em solid var(--light);
+  color: black;
+}
+
+.new-item textarea:hover,
+.new-item textarea:focus {
+  border-bottom: 0.1em solid var(--dark);
+  background-color: var(--light);
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: black;
+}
+
+textarea::-webkit-scrollbar-track {
+  border-radius: 0.5em;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  transition: all 0.3s ease-out;
+  border-radius: 0.5em;
+  background-color: var(--dark);
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  border-radius: 0.5em;
+  padding: 0.1em;
+  background-color: black;
+}
+
+.title-wrapper .textbox textarea {
+  overflow-y: scroll;
+
+  padding: .2em;
+  border-radius: 0.5em;
+  color: var(--dark);
+  font-size: 1.3em;
+  font-weight: 300;
+  border: 0.1em solid var(--light);
+  background-color: var(--light);
+  opacity: 0.7;
+}
+
+.title-wrapper .textbox textarea:focus,
+.title-wrapper .textbox textarea:hover {
+  border: 0.1em solid var(--dark);
+  background-color: var(--light);
+}
+
+
+.sparks {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 0.15em;
+  height: 0.15em;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.spark-1 {
+  top: 0;
+  left: 50%;
+  animation: spark-animation 0.5s linear forwards;
+}
+
+.spark-2 {
+  top: 50%;
+  left: 0;
+  animation: spark-animation 0.5s linear forwards 0.1s;
+}
+
+.spark-3 {
+  top: 50%;
+  right: 0;
+  animation: spark-animation 0.5s linear forwards 0.2s;
+}
+
+@keyframes spark-animation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
